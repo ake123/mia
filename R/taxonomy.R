@@ -284,9 +284,9 @@ setMethod("getTaxonomyLabels", signature = c(x = "SummarizedExperiment"),
             stop("'resolve_loops' must be TRUE or FALSE.", call. = FALSE)
         }
         #
-        dup <- duplicated(rowData(x)[,taxonomyRanks(x)])
+        dup <- duplicated(rowData(x)[,taxonomyRanks(x), drop = FALSE])
         if(any(dup)){
-            td <- apply(rowData(x)[,taxonomyRanks(x)],1L,paste,collapse = "___")
+            td <- apply(rowData(x)[,taxonomyRanks(x), drop = FALSE],1L,paste,collapse = "___")
             td_non_dup <- td[!dup]
             m <- match(td, td_non_dup)
         }
@@ -318,15 +318,16 @@ setMethod("getTaxonomyLabels", signature = c(x = "SummarizedExperiment"),
     tax_ranks_non_empty <- t(as(tax_ranks_non_empty,"matrix"))
     tax_ranks_selected <- apply(tax_ranks_non_empty,1L,which)
     if(any(lengths(tax_ranks_selected) == 0L)){
-        if(!anyDuplicated(rownames(x))){
-            return(NULL)
+        if( anyDuplicated(rownames(x)) ){
+            stop("Only empty taxonomic information detected. Some rows contain ",
+                 "only entries selected by 'empty.fields'. Cannot generated ",
+                 "labels. Try option na.rm = TRUE in the function call.",
+                 call. = FALSE)
         }
-        stop("Only empty taxonomic information detected. Some rows contain ",
-             "only entries selected by 'empty.fields'. Cannot generated ",
-             "labels. Try option na.rm = TRUE in the function call.",
-             call. = FALSE)
+        # For those taxa that do not have any rowData information, assign NA
+        tax_ranks_selected[lengths(tax_ranks_selected) == 0L] <- NA
     }
-    #
+
     if(is.matrix(tax_ranks_selected)){
         tax_ranks_selected <- apply(tax_ranks_selected,2L,max)
     } else if(is.list(tax_ranks_selected)) {
@@ -398,7 +399,7 @@ setMethod("taxonomyTree", signature = c(x = "SummarizedExperiment"),
         }
         #
         # Converted to data.frame so that drop = FALSE is enabled
-        td <- data.frame(rowData(x)[,taxonomyRanks(x)])
+        td <- data.frame(rowData(x)[,taxonomyRanks(x), drop = FALSE])
         # Remove empty taxonomic levels
         td <- td[,!vapply(td,function(tl){all(is.na(tl))},logical(1)), drop = FALSE]
         # Make information unique
