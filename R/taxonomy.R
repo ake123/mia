@@ -395,6 +395,11 @@ setMethod("taxonomyTree", signature = c(x = "SummarizedExperiment"),
             stop("'x' does not have rowData. Tree cannot be created.", 
                  call. = FALSE)
         }
+        # If rowData does not include taxonomy ranks
+        if( length(taxonomyRanks(x)) == 0 ){
+            stop("'rowData(x)' does not include ranks. Tree cannot be created.", 
+                 call. = FALSE)
+        }
         #
         # Converted to data.frame so that drop = FALSE is enabled
         td <- data.frame(rowData(x)[,taxonomyRanks(x)])
