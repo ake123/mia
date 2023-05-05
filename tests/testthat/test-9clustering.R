@@ -120,3 +120,7 @@ dbscan.out <- clusterRows(relassay, DbscanParam())
 dbscan.out <- clusterRows(t(relassay), DbscanParam(eps=0.2, min.pts = 3))
 colData(tse)$clusters <- dbscan.out
 plotReducedDim(tse, "MDS", colour_by = "clusters")
+
+
+# Comparing algorithms
+compareClusterings(list(dbscan=dbscan.out, kmeans=kmeans.out, hclust=hclust.out))
