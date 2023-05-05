@@ -50,10 +50,12 @@ tse <- GlobalPatterns
 # Normalization.
 tse <- logNormCounts(tse)
 tse <- transformCounts(tse, method = "relabundance")
+relassay <- assay(tse, "relabundance")
 
-# Groundwork for plotting
+# Groundwork for plotting and K-means
 tse <- runMDS(tse, assay.type = "relabundance", FUN = vegan::vegdist, method = "bray")
-tse <- runMDS(tse, assay.type = "relabundance", FUN = vegan::vegdist, method = "bray", transposed=T)
+
+
 
 # Simple hierarchical clustering on the rows
 hclust.out <- clusterRows(assay(tse, "logcounts"), HclustParam(), full=TRUE)
@@ -107,7 +109,14 @@ plotReducedDim(tse, "MDS", colour_by = "clusters")
 
 # K-means clustering
 set.seed(100)
-
 # By row
-kmeans.out <- clusterRows(reducedDim(tse), KmeansParam(10))
+kmeans.out <- clusterRows(relassay, KmeansParam(10))
+kmeans.out <- clusterRows(t(relassay), KmeansParam(10))
 plotReducedDim(tse, "MDS", colour_by = I(kmeans.out))
+
+
+#DBSCAN
+dbscan.out <- clusterRows(relassay, DbscanParam())
+dbscan.out <- clusterRows(t(relassay), DbscanParam(eps=0.2, min.pts = 3))
+colData(tse)$clusters <- dbscan.out
+plotReducedDim(tse, "MDS", colour_by = "clusters")
