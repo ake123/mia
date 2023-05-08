@@ -125,6 +125,9 @@ dbscan.out <- clusterRows(t(relassay), DbscanParam(eps=0.2, min.pts = 3))
 colData(tse)$clusters <- dbscan.out
 plotReducedDim(tse, "MDS", colour_by = "clusters")
 
+# clusterSweep:
+clusSweep <-clusterSweep(relassay, DbscanParam(), min.pts = c(1L, 2L, 3L, 4L), eps = c(0.05, 0.1, 0.15, 0.2))
+
 # Self organizing maps
 if( !require("kohonen") ){
     BiocManager::install("kohonen")
