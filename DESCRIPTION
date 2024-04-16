@@ -1,6 +1,6 @@
 Package: mia
 Type: Package
-Version: 1.11.10
+Version: 1.11.9
 Authors@R:
     c(person(given = "Felix G.M.", family = "Ernst", role = c("aut"),
              email = "felix.gm.ernst@outlook.com",
@@ -67,7 +67,6 @@ Imports:
     tidyr,
     bluster,
     MatrixGenerics,
-    miaTime,
     mediation
 Suggests:
     testthat,
@@ -82,6 +81,7 @@ Suggests:
     reldist,
     ade4,
     microbiomeDataSets,
+    miaTime,
     rmarkdown
 URL: https://github.com/microbiome/mia
 BugReports: https://github.com/microbiome/mia/issues

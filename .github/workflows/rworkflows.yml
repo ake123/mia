@@ -58,3 +58,4 @@ jobs:
         runner_os: ${{ runner.os }}
         cache_version: cache-v1
         enable_act: ${{ false }}
+        docker_registry: ghcr.io
