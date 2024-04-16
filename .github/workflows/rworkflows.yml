@@ -6,6 +6,7 @@ name: rworkflows
     - main
     - devel
     - mediation
+    - DESCRIPTION
     - RELEASE_**
   pull_request:
     branches:
