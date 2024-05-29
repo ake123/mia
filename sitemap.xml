@@ -34,6 +34,9 @@
     <loc>/reference/addCluster.html</loc>
   </url>
   <url>
+    <loc>/reference/addDivergence.html</loc>
+  </url>
+  <url>
     <loc>/reference/agglomerate-methods.html</loc>
   </url>
   <url>
@@ -61,9 +64,6 @@
     <loc>/reference/esophagus.html</loc>
   </url>
   <url>
-    <loc>/reference/estimateDivergence.html</loc>
-  </url>
-  <url>
     <loc>/reference/estimateDiversity.html</loc>
   </url>
   <url>
@@ -76,7 +76,13 @@
     <loc>/reference/estimateRichness.html</loc>
   </url>
   <url>
-    <loc>/reference/getExperimentCrossAssociation.html</loc>
+    <loc>/reference/getCrossAssociation.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getDominant.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getMediation.html</loc>
   </url>
   <url>
     <loc>/reference/getPrevalence.html</loc>
@@ -115,10 +121,7 @@
     <loc>/reference/makeTreeSEFromPhyloseq.html</loc>
   </url>
   <url>
-    <loc>/reference/meltAssay.html</loc>
-  </url>
-  <url>
-    <loc>/reference/merge-methods.html</loc>
+    <loc>/reference/meltSE.html</loc>
   </url>
   <url>
     <loc>/reference/mergeSEs.html</loc>
@@ -133,7 +136,7 @@
     <loc>/reference/peerj13075.html</loc>
   </url>
   <url>
-    <loc>/reference/perSampleDominantTaxa.html</loc>
+    <loc>/reference/rarefyAssay.html</loc>
   </url>
   <url>
     <loc>/reference/relabundance.html</loc>
@@ -148,13 +151,7 @@
     <loc>/reference/runNMDS.html</loc>
   </url>
   <url>
-    <loc>/reference/splitByRanks.html</loc>
-  </url>
-  <url>
     <loc>/reference/splitOn.html</loc>
-  </url>
-  <url>
-    <loc>/reference/subsampleCounts.html</loc>
   </url>
   <url>
     <loc>/reference/subsetSamples.html</loc>

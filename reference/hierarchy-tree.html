@@ -19,7 +19,7 @@ object and add this hierarchy tree into the rowTree."><!-- mathjax --><script sr
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.18</span>
       </span>
     </div>
 
@@ -60,12 +60,12 @@ object and add this hierarchy tree into the <code>rowTree</code>.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getHierarchyTree</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for SummarizedExperiment</span></span>
-<span><span class="fu">getHierarchyTree</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">getHierarchyTree</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">addHierarchyTree</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for SummarizedExperiment</span></span>
-<span><span class="fu">addHierarchyTree</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">addHierarchyTree</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -86,7 +86,7 @@ object</p></dd>
 
 <ul><li><p><code>addHierarchyTree</code>: a <code>TreeSummarizedExperiment</code> whose
 <code>phylo</code> tree represents the hierarchy among available taxonomy
-information</p></li>
+information.</p></li>
 <li><p><code>getHierarchyTree</code>: a <code>phylo</code> tree representing the
 hierarchy among available taxonomy information.</p></li>
 </ul></div>
@@ -134,8 +134,7 @@ structure based on their taxonomic ranks.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dim: 19216 26 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> assays(1): counts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(19216): Class:Thermoprotei Class:Thermoprotei ... Phylum:SR1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Phylum:SR1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(19216): 549322 522457 ... 200359 271582</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(7): Kingdom Phylum ... Genus Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> colnames(26): CL3 CC1 ... Even2 Even3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> colData names(7): X.SampleID Primer ... SampleType Description</span>
@@ -146,24 +145,6 @@ structure based on their taxonomic ranks.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rowTree: 1 phylo tree(s) (1645 leaves)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> colLinks: NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> colTree: NULL</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># For instance, the TreeSummarizedExperiment Tengeler2020 contains an</span></span></span>
-<span class="r-in"><span><span class="co"># actual phylogenetic tree.</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Tengeler2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">tse2</span> <span class="op">&lt;-</span> <span class="va">Tengeler2020</span></span></span>
-<span class="r-in"><span><span class="va">phylo_tree</span> <span class="op">&lt;-</span> <span class="fu">rowTree</span><span class="op">(</span><span class="va">tse2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">phylo_tree</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Phylogenetic tree with 151 tips and 149 internal nodes.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Tip labels:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   172647198, 1726478, 1726479, 172647201, 172647222, 17264798, ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Node labels:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   , 0.789, 0.810, 0.844, 0.973, 0.685, ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Unrooted; includes branch lengths.</span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -178,7 +159,7 @@ structure based on their taxonomic ranks.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer></div>

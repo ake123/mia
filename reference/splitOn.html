@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.18</span>
       </span>
     </div>
 
@@ -87,9 +87,10 @@ objects.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>Arguments passed to <code>mergeRows</code>/<code>mergeCols</code> function for
+<dd><p>Arguments passed to <code>agglomerateByVariable</code> function for
 <code>SummarizedExperiment</code> objects and other functions.
-See <code><a href="agglomerate-methods.html">mergeRows</a></code> for more details.</p><ul><li><p><code>use_names</code> A single boolean value to select whether to name elements of
+See <code><a href="agglomerate-methods.html">agglomerateByVariable</a></code> for more
+details.</p><ul><li><p><code>use_names</code> A single boolean value to select whether to name elements of
 list by their group names.</p></li>
 </ul></dd>
 
@@ -145,9 +146,8 @@ group.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="splitByRanks.html">splitByRanks</a></code>
-<code><a href="splitByRanks.html">unsplitByRanks</a></code>
-<code><a href="merge-methods.html">mergeRows</a></code>,
+    <div class="dont-index"><p><code><a href="agglomerate-methods.html">agglomerateByRanks</a></code>
+<code><a href="agglomerate-methods.html">agglomerateByVariable</a></code>,
 <code><a href="https://rdrr.io/pkg/scuttle/man/sumCountsAcrossFeatures.html" class="external-link">sumCountsAcrossFeatures</a></code>,
 <code><a href="agglomerate-methods.html">agglomerateByRank</a></code>,
 <code><a href="https://rdrr.io/pkg/SingleCellExperiment/man/altExps.html" class="external-link">altExps</a></code>,
@@ -190,9 +190,6 @@ group.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># If you want to split on columns and update rowTree, you can do</span></span></span>
 <span class="r-in"><span><span class="va">se_list</span> <span class="op">&lt;-</span> <span class="fu">splitOn</span><span class="op">(</span><span class="va">tse</span>, f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">$</span><span class="va">group</span>, update_rowTree <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'keep.nodes' does specify all the tips from 'tree'. The tree is not agglomerated.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'keep.nodes' does specify all the tips from 'tree'. The tree is not agglomerated.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'keep.nodes' does specify all the tips from 'tree'. The tree is not agglomerated.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># If you want to combine groups back together, you can use unsplitBy</span></span></span>
 <span class="r-in"><span><span class="fu">unsplitOn</span><span class="op">(</span><span class="va">se_list</span><span class="op">)</span></span></span>
@@ -202,7 +199,7 @@ group.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> assays(1): counts</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rownames(19216): 549322 522457 ... 200359 271582</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(8): Kingdom Phylum ... Species group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(26): CL3 M11Fcsw ... Even1 Even3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(26): CL3 CC1 ... TS28 Even3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> colData names(8): X.SampleID Primer ... Description group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> reducedDimNames(0):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> mainExpName: NULL</span>
@@ -226,7 +223,7 @@ group.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer></div>
