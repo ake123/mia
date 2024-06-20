@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.23</span>
       </span>
     </div>
 
@@ -68,7 +68,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>mia: Microbiome analysis tools</h1>
             
-            <h4 data-toc-skip class="date">2024-06-18</h4>
+            <h4 data-toc-skip class="date">2024-06-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/microbiome/mia/blob/HEAD/vignettes/mia.Rmd" class="external-link"><code>vignettes/mia.Rmd</code></a></small>
       <div class="hidden name"><code>mia.Rmd</code></div>
@@ -322,7 +322,7 @@ implemented in <code>TreeSummarizedExperiment</code>.</p>
 <span><span class="va">taxa_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TreeSummarizedExperiment/man/resolveLoop.html" class="external-link">resolveLoop</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">taxa</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">taxa_tree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TreeSummarizedExperiment/man/toTree.html" class="external-link">toTree</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taxa_res</span><span class="op">)</span></span>
 <span><span class="va">taxa_tree</span><span class="op">$</span><span class="va">tip.label</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/taxonomy-methods.html">getTaxonomyLabels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/altExps.html" class="external-link">altExp</a></span><span class="op">(</span><span class="va">tse</span>,<span class="st">"Species"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">rowNodeLab</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/taxonomy-methods.html">getTaxonomyLabels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/altExps.html" class="external-link">altExp</a></span><span class="op">(</span><span class="va">tse</span>,<span class="st">"Species"</span><span class="op">)</span>, make_unique <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">rowNodeLab</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/taxonomy-methods.html">getTaxonomyLabels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/altExps.html" class="external-link">altExp</a></span><span class="op">(</span><span class="va">tse</span>,<span class="st">"Species"</span><span class="op">)</span>, make.unique <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/altExps.html" class="external-link">altExp</a></span><span class="op">(</span><span class="va">tse</span>,<span class="st">"Species"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TreeSummarizedExperiment/man/changeTree.html" class="external-link">changeTree</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/altExps.html" class="external-link">altExp</a></span><span class="op">(</span><span class="va">tse</span>,<span class="st">"Species"</span><span class="op">)</span>,</span>
 <span>                                   rowTree <span class="op">=</span> <span class="va">taxa_tree</span>,</span>
 <span>                                   rowNodeLab <span class="op">=</span> <span class="va">rowNodeLab</span><span class="op">)</span></span></code></pre></div>
@@ -350,7 +350,7 @@ rarefying.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GlobalPatterns</span>, package <span class="op">=</span> <span class="st">"mia"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tse.subsampled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rarefyAssay.html">rarefyAssay</a></span><span class="op">(</span><span class="va">GlobalPatterns</span>, </span>
-<span>                                  min_size <span class="op">=</span> <span class="fl">60000</span>, </span>
+<span>                                  sample <span class="op">=</span> <span class="fl">60000</span>, </span>
 <span>                                  name <span class="op">=</span> <span class="st">"subsampled"</span>,</span>
 <span>                                  replace <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                                  seed <span class="op">=</span> <span class="fl">1938</span><span class="op">)</span></span>
@@ -550,8 +550,8 @@ long format will be returned.</p>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">molten_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/deprecate.html">meltAssay</a></span><span class="op">(</span><span class="va">tse</span>,</span>
 <span>                         assay.type <span class="op">=</span> <span class="st">"counts"</span>,</span>
-<span>                         add_row_data <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                         add_col_data <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>                         add.row <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                         add.col <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">molten_data</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 499,616 × 24</span></span></span>
@@ -606,7 +606,7 @@ long format will be returned.</p>
 <span><span class="co">## other attached packages:</span></span>
 <span><span class="co">##  [1] phyloseq_1.49.0                 scater_1.33.1                  </span></span>
 <span><span class="co">##  [3] ggplot2_3.5.1                   scuttle_1.15.0                 </span></span>
-<span><span class="co">##  [5] mia_1.13.22                     MultiAssayExperiment_1.31.3    </span></span>
+<span><span class="co">##  [5] mia_1.13.23                     MultiAssayExperiment_1.31.3    </span></span>
 <span><span class="co">##  [7] TreeSummarizedExperiment_2.13.0 Biostrings_2.73.1              </span></span>
 <span><span class="co">##  [9] XVector_0.45.0                  SingleCellExperiment_1.27.2    </span></span>
 <span><span class="co">## [11] SummarizedExperiment_1.35.0     Biobase_2.65.0                 </span></span>
