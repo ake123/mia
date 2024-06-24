@@ -85,8 +85,7 @@ the <code>vegan</code> package options and some others.</p>
 <span>  index <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"coverage"</span>, <span class="st">"faith"</span>, <span class="st">"fisher"</span>, <span class="st">"gini_simpson"</span>, <span class="st">"inverse_simpson"</span>,</span>
 <span>    <span class="st">"log_modulo_skewness"</span>, <span class="st">"shannon"</span><span class="op">)</span>,</span>
 <span>  name <span class="op">=</span> <span class="va">index</span>,</span>
-<span>  tree.name <span class="op">=</span> <span class="va">tree_name</span>,</span>
-<span>  tree_name <span class="op">=</span> <span class="st">"phylo"</span>,</span>
+<span>  tree.name <span class="op">=</span> <span class="st">"phylo"</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  BPPARAM <span class="op">=</span> <span class="fu">SerialParam</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -185,10 +184,6 @@ rowTree will be used to calculate faith index.
 (By default: <code>tree.name = "phylo"</code>)</p></dd>
 
 
-<dt>tree_name</dt>
-<dd><p>Deprecated. Use <code>tree.name</code> isntead.</p></dd>
-
-
 <dt>tree</dt>
 <dd><p>A phylogenetic tree that is used to calculate 'faith' index.
 If <code>x</code> is a <code>TreeSummarizedExperiment</code>, <code>rowTree(x)</code> is
@@ -204,6 +199,10 @@ the tree. (By default: <code>node.label = NULL</code>)</p></dd>
 
 <dt>node_lab</dt>
 <dd><p>Deprecated. Use <code>node.label</code> instead.</p></dd>
+
+
+<dt>tree_name</dt>
+<dd><p>Deprecated. Use <code>tree.name</code> isntead.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -320,39 +319,33 @@ A Consumer's Guide to Diversity Indices.
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Calculate diversities</span></span></span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu">estimateDiversity</span><span class="op">(</span><span class="va">tse</span>, index <span class="op">=</span> <span class="va">index</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>fisher not calculated due to negative values or </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>                           non-integer counts in assay data; log_modulo_skewness not calculated due to non-positive values in assay data</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Verify the columns in colData</span></span></span>
+<span class="r-in"><span><span class="va">col_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">valid_indices</span> <span class="op">&lt;-</span> <span class="va">index</span><span class="op">[</span><span class="va">index</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">col_names</span><span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The colData contains the indices with their code names by default</span></span></span>
-<span class="r-in"><span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>, <span class="va">index</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DataFrame with 26 rows and 7 columns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           shannon gini_simpson inverse_simpson  coverage    fisher     faith</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;numeric&gt;    &lt;numeric&gt;       &lt;numeric&gt; &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CL3       6.57652     0.994656        187.1298      1113  1035.008   250.535</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CC1       6.77660     0.995212        208.8436      1374  1107.495   262.263</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SV1       6.49849     0.996290        269.5441       829   854.279   208.458</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> M31Fcsw   3.82837     0.927599         13.8119        71   313.719   117.876</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> M11Fcsw   3.28767     0.909738         11.0789        37   289.979   119.825</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...           ...          ...             ...       ...       ...       ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS28      4.12654     0.965175         28.7152        62   337.892   124.651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS29      3.45277     0.918098         12.2097        46   318.969   121.206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even1     4.08366     0.968198         31.4447        51   546.578   179.938</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even2     3.95691     0.963916         27.7129        47   401.760   140.810</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even3     4.00637     0.967340         30.6189        49   344.939   126.569</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         log_modulo_skewness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;numeric&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CL3                 2.06142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CC1                 2.06142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SV1                 2.06142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> M31Fcsw             2.06141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> M11Fcsw             2.06141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...                     ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS28                2.06141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS29                2.06142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even1               2.06141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even2               2.06141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even3               2.06141</span>
+<span class="r-in"><span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>, <span class="va">valid_indices</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DataFrame with 26 rows and 5 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           shannon gini_simpson inverse_simpson  coverage     faith</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;numeric&gt;    &lt;numeric&gt;       &lt;numeric&gt; &lt;integer&gt; &lt;numeric&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CL3       6.57652     0.994656        187.1298      1113   250.535</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CC1       6.77660     0.995212        208.8436      1374   262.263</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SV1       6.49849     0.996290        269.5441       829   208.458</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> M31Fcsw   3.82837     0.927599         13.8119        71   117.876</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> M11Fcsw   3.28767     0.909738         11.0789        37   119.825</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ...           ...          ...             ...       ...       ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TS28      4.12654     0.965175         28.7152        62   124.651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TS29      3.45277     0.918098         12.2097        46   121.206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Even1     4.08366     0.968198         31.4447        51   179.938</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Even2     3.95691     0.963916         27.7129        47   140.810</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Even3     4.00637     0.967340         30.6189        49   126.569</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Removing indices</span></span></span>
-<span class="r-in"><span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>, <span class="va">index</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></span>
+<span class="r-in"><span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>, <span class="va">valid_indices</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></span>
+<span class="r-in"><span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>, <span class="va">name</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># 'threshold' can be used to determine threshold for 'coverage' index</span></span></span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu">estimateDiversity</span><span class="op">(</span><span class="va">tse</span>, index <span class="op">=</span> <span class="st">"coverage"</span>, threshold <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span></span></span>
@@ -360,6 +353,7 @@ A Consumer's Guide to Diversity Indices.
 <span class="r-in"><span><span class="co"># 'log_modulo_skewness' is calculated</span></span></span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu">estimateDiversity</span><span class="op">(</span><span class="va">tse</span>, index <span class="op">=</span> <span class="st">"log_modulo_skewness"</span>,</span></span>
 <span class="r-in"><span>       quantile <span class="op">=</span> <span class="fl">0.75</span>, nclasses <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>log_modulo_skewness not calculated due to non-positive values in assay data</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># It is recommended to specify also the final names used in the output.</span></span></span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu">estimateDiversity</span><span class="op">(</span><span class="va">tse</span>,</span></span>
@@ -367,39 +361,31 @@ A Consumer's Guide to Diversity Indices.
 <span class="r-in"><span>               <span class="st">"fisher"</span>, <span class="st">"faith"</span>, <span class="st">"log_modulo_skewness"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Shannon"</span>, <span class="st">"GiniSimpson"</span>,  <span class="st">"InverseSimpson"</span>,  <span class="st">"Coverage"</span>,</span></span>
 <span class="r-in"><span>               <span class="st">"Fisher"</span>, <span class="st">"Faith"</span>, <span class="st">"LogModSkewness"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>fisher not calculated due to negative values or </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>                           non-integer counts in assay data; log_modulo_skewness not calculated due to non-positive values in assay data</span>
+<span class="r-in"><span>               </span></span>
+<span class="r-in"><span> <span class="va">col_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">valid_names</span> <span class="op">&lt;-</span> <span class="va">name</span><span class="op">[</span><span class="va">name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">col_names</span><span class="op">]</span></span></span>
+<span class="r-in"><span> </span></span>
 <span class="r-in"><span><span class="co"># The colData contains the indices by their new names provided by the user</span></span></span>
-<span class="r-in"><span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>, <span class="va">name</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DataFrame with 26 rows and 7 columns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Shannon GiniSimpson InverseSimpson  Coverage    Fisher     Faith</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;numeric&gt;   &lt;numeric&gt;      &lt;numeric&gt; &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CL3       6.57652    0.994656       187.1298      1113  1035.008   250.535</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CC1       6.77660    0.995212       208.8436      1374  1107.495   262.263</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SV1       6.49849    0.996290       269.5441       829   854.279   208.458</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> M31Fcsw   3.82837    0.927599        13.8119        71   313.719   117.876</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> M11Fcsw   3.28767    0.909738        11.0789        37   289.979   119.825</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...           ...         ...            ...       ...       ...       ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS28      4.12654    0.965175        28.7152        62   337.892   124.651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS29      3.45277    0.918098        12.2097        46   318.969   121.206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even1     4.08366    0.968198        31.4447        51   546.578   179.938</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even2     3.95691    0.963916        27.7129        47   401.760   140.810</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even3     4.00637    0.967340        30.6189        49   344.939   126.569</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         LogModSkewness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              &lt;numeric&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CL3            2.06142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CC1            2.06142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SV1            2.06142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> M31Fcsw        2.06141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> M11Fcsw        2.06141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...                ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS28           2.06141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS29           2.06142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even1          2.06141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even2          2.06141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Even3          2.06141</span>
+<span class="r-in"><span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>, <span class="va">valid_names</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DataFrame with 26 rows and 5 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Shannon GiniSimpson InverseSimpson  Coverage     Faith</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;numeric&gt;   &lt;numeric&gt;      &lt;numeric&gt; &lt;integer&gt; &lt;numeric&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CL3       6.57652    0.994656       187.1298      1113   250.535</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CC1       6.77660    0.995212       208.8436      1374   262.263</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SV1       6.49849    0.996290       269.5441       829   208.458</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> M31Fcsw   3.82837    0.927599        13.8119        71   117.876</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> M11Fcsw   3.28767    0.909738        11.0789        37   119.825</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ...           ...         ...            ...       ...       ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TS28      4.12654    0.965175        28.7152        62   124.651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TS29      3.45277    0.918098        12.2097        46   121.206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Even1     4.08366    0.968198        31.4447        51   179.938</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Even2     3.95691    0.963916        27.7129        47   140.810</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Even3     4.00637    0.967340        30.6189        49   126.569</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Compare the indices visually</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>, <span class="va">name</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>, <span class="va">valid_names</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="estimateDiversity-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Plotting the diversities - use the selected names</span></span></span>

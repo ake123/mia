@@ -68,7 +68,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>mia: Microbiome analysis tools</h1>
             
-            <h4 data-toc-skip class="date">2024-06-20</h4>
+            <h4 data-toc-skip class="date">2024-06-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/microbiome/mia/blob/HEAD/vignettes/mia.Rmd" class="external-link"><code>vignettes/mia.Rmd</code></a></small>
       <div class="hidden name"><code>mia.Rmd</code></div>
@@ -423,9 +423,8 @@ by setting <code>index = "shannon"</code> for example.</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/estimateDiversity.html">estimateDiversity</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">8</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "coverage"            "faith"               "fisher"             </span></span>
-<span><span class="co">## [4] "gini_simpson"        "inverse_simpson"     "log_modulo_skewness"</span></span>
-<span><span class="co">## [7] "shannon"</span></span></code></pre>
+<pre><code><span><span class="co">## [1] "coverage"        "faith"           "gini_simpson"    "inverse_simpson"</span></span>
+<span><span class="co">## [5] "shannon"</span></span></code></pre>
 <p>Beta diversity indices are used to describe inter-sample connections.
 Technically they are calculated as <code>dist</code> object and reduced
 dimensions can be extracted using <code>cmdscale</code>. This is wrapped
@@ -554,7 +553,7 @@ long format will be returned.</p>
 <span>                         add.col <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">molten_data</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 499,616 × 24</span></span></span>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 499,616 × 22</span></span></span>
 <span><span class="co">##    FeatureID SampleID counts Kingdom Phylum     Class Order Family Genus Species</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 1</span> 549322    CL3           0 Archaea Crenarcha… Ther… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
@@ -568,11 +567,10 @@ long format will be returned.</p>
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 549322    M31Tong       0 Archaea Crenarcha… Ther… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span> 549322    M11Tong       0 Archaea Crenarcha… Ther… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 499,606 more rows</span></span></span>
-<span><span class="co">## <span style="color: #949494;"># ℹ 14 more variables: X.SampleID &lt;fct&gt;, Primer &lt;fct&gt;, Final_Barcode &lt;fct&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 12 more variables: X.SampleID &lt;fct&gt;, Primer &lt;fct&gt;, Final_Barcode &lt;fct&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   Barcode_truncated_plus_T &lt;fct&gt;, Barcode_full_length &lt;fct&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   SampleType &lt;fct&gt;, Description &lt;fct&gt;, coverage &lt;int&gt;, faith &lt;dbl&gt;,</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   fisher &lt;dbl&gt;, gini_simpson &lt;dbl&gt;, inverse_simpson &lt;dbl&gt;,</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   log_modulo_skewness &lt;dbl&gt;, shannon &lt;dbl&gt;</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #949494;">#   gini_simpson &lt;dbl&gt;, inverse_simpson &lt;dbl&gt;, shannon &lt;dbl&gt;</span></span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -626,7 +624,7 @@ long format will be returned.</p>
 <span><span class="co">##  [15] base64enc_0.1-3             htmltools_0.5.8.1          </span></span>
 <span><span class="co">##  [17] S4Arrays_1.5.1              BiocNeighbors_1.23.0       </span></span>
 <span><span class="co">##  [19] Rhdf5lib_1.27.0             rhdf5_2.49.0               </span></span>
-<span><span class="co">##  [21] SparseArray_1.5.8           Formula_1.2-5              </span></span>
+<span><span class="co">##  [21] SparseArray_1.5.9           Formula_1.2-5              </span></span>
 <span><span class="co">##  [23] sass_0.4.9                  bslib_0.7.0                </span></span>
 <span><span class="co">##  [25] htmlwidgets_1.6.4           desc_1.4.3                 </span></span>
 <span><span class="co">##  [27] sandwich_3.1-0              plyr_1.8.9                 </span></span>
@@ -645,7 +643,7 @@ long format will be returned.</p>
 <span><span class="co">##  [53] withr_3.0.0                 htmlTable_2.4.2            </span></span>
 <span><span class="co">##  [55] backports_1.5.0             BiocParallel_1.39.0        </span></span>
 <span><span class="co">##  [57] viridis_0.6.5               DBI_1.2.3                  </span></span>
-<span><span class="co">##  [59] MASS_7.3-60.2               DelayedArray_0.31.1        </span></span>
+<span><span class="co">##  [59] MASS_7.3-60.2               DelayedArray_0.31.3        </span></span>
 <span><span class="co">##  [61] biomformat_1.33.0           bluster_1.15.0             </span></span>
 <span><span class="co">##  [63] permute_0.9-7               tools_4.4.0                </span></span>
 <span><span class="co">##  [65] vipor_0.4.7                 foreign_0.8-86             </span></span>
