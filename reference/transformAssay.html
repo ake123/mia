@@ -18,7 +18,7 @@ See details for options."><!-- mathjax --><script src="https://cdnjs.cloudflare.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.36</span>
       </span>
     </div>
 
@@ -121,8 +121,10 @@ transformation is applied sample (column) or feature (row) wise.
 
 
 <dt id="arg-pseudocount">pseudocount<a class="anchor" aria-label="anchor" href="#arg-pseudocount"></a></dt>
-<dd><p><code>Logical scalar</code> or <code>numeric scalar</code>. When TRUE,
-automatically adds half of the minimum positive value of <code>assay.type</code>.
+<dd><p><code>Logical scalar</code> or <code>numeric scalar</code>.
+When <code>TRUE</code>, automatically adds half of the minimum positive
+value of <code>assay.type</code> (missing values ignored by default:
+<code>na.rm = TRUE</code>).
 When FALSE, does not add any pseudocount (pseudocount = 0).
 Alternatively, a user-specified numeric value can be added as pseudocount.
 (Default: <code>FALSE</code>).</p></dd>
@@ -256,6 +258,8 @@ where \(x\) is a single value of data.</p></li>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"GlobalPatterns"</span>, package<span class="op">=</span><span class="st">"mia"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="va">GlobalPatterns</span></span></span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu">transformAssay</span><span class="op">(</span><span class="va">tse</span>, method <span class="op">=</span> <span class="st">"relabundance"</span>, altexp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"phylum"</span>, <span class="st">"genus"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
 <span class="r-in"><span><span class="va">tse</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: TreeSummarizedExperiment </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dim: 19216 26 </span>
