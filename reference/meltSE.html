@@ -94,14 +94,12 @@ long data.frame which can be used for <code>tidyverse</code>-tools.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>a numeric matrix with samples as rows or a
-<code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">SummarizedExperiment</a></code>
-object.</p></dd>
+<dd><p><code><a href="https://rdrr.io/pkg/TreeSummarizedExperiment/man/TreeSummarizedExperiment-class.html" class="external-link">TreeSummarizedExperiment</a></code>.</p></dd>
 
 
 <dt id="arg-assay-type">assay.type<a class="anchor" aria-label="anchor" href="#arg-assay-type"></a></dt>
-<dd><p><code>Character scalar</code>. Specifies the name of the
-assay used in calculation. (Default: <code>"counts"</code>)</p></dd>
+<dd><p><code>Character scalar</code>. Specifies which assay to use for
+calculation. (Default: <code>"counts"</code>)</p></dd>
 
 
 <dt id="arg-assay-name">assay_name<a class="anchor" aria-label="anchor" href="#arg-assay-name"></a></dt>
@@ -174,10 +172,6 @@ a column “SampleID” with the colnames, if set</p>
 <code>rowData</code> contains a column “FeatureID”, they will be renamed to
 “SampleID_col” and “FeatureID_row”, if row names or column
 names are set.</p>
-    </div>
-    <div id="author">
-    <h2>Author</h2>
-    <p>Sudarshan A. Shetty</p>
     </div>
 
     <div id="ref-examples">
