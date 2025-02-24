@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.46</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.24</span>
       </span>
     </div>
 
@@ -88,8 +88,8 @@ path of the phylogenetic tree.
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>additional arguments:</p><ul><li><p><code>assay.type</code>: <code>Character scalar</code>. Specifies the name of the assay
-used in calculation. (Default: <code>"counts"</code>)</p></li>
+<dd><p>additional arguments:</p><ul><li><p><code>assay.type</code>: <code>Character scalar</code>. Specifies the name of
+the assay used in calculation. (Default: <code>"metaphlan"</code>)</p></li>
 <li><p><code>prefix.rm</code>: <code>Logical scalar</code>. Should
 taxonomic prefixes be removed? (Default: <code>FALSE</code>)</p></li>
 <li><p><code>remove.suffix</code>: <code>Logical scalar</code>. Should
@@ -125,9 +125,10 @@ Data is imported so that data at the lowest rank is imported as a
     </div>
     <div id="references">
     <h2>References</h2>
-    <p>Beghini F, McIver LJ, Blanco-Míguez A, Dubois L, Asnicar F, Maharjan S, Mailyan A,
-Manghi P, Scholz M, Thomas AM, Valles-Colomer M, Weingart G, Zhang Y, Zolfo M,
-Huttenhower C, Franzosa EA, &amp; Segata N (2021) Integrating taxonomic, functional,
+    <p>Beghini F, McIver LJ, Blanco-Míguez A, Dubois L, Asnicar F, Maharjan S,
+Mailyan A, Manghi P, Scholz M, Thomas AM, Valles-Colomer M, Weingart G,
+Zhang Y, Zolfo M, Huttenhower C, Franzosa EA, &amp; Segata N (2021)
+Integrating taxonomic, functional,
 and strain-level profiling of diverse microbial communities with bioBakery 3.
 <em>eLife</em>. 10:e65088. doi: 10.7554/eLife.65088</p>
     </div>
@@ -155,7 +156,7 @@ and strain-level profiling of diverse microbial communities with bioBakery 3.
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: TreeSummarizedExperiment </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dim: 16 6 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> assays(1): counts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> assays(1): metaphlan</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rownames(16): s__Corynebacterium_matruchotii s__Rothia_dentocariosa ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   s__Haemophilus_haemolyticus s__Moraxella_nonliquefaciens</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(9): kingdom phylum ... clade_name NCBI_tax_id</span>
@@ -179,7 +180,7 @@ and strain-level profiling of diverse microbial communities with bioBakery 3.
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: TreeSummarizedExperiment </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dim: 4 6 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> assays(1): counts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> assays(1): metaphlan</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rownames(4): p__Actinobacteria p__Bacteroidetes p__Firmicutes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   p__Proteobacteria</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(4): kingdom phylum clade_name NCBI_tax_id</span>
@@ -205,7 +206,7 @@ and strain-level profiling of diverse microbial communities with bioBakery 3.
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Felix G.M. Ernst, Sudarshan A. Shetty, Tuomas Borman, Leo Lahti.</p>
+  <p></p><p>Developed by Tuomas Borman, Felix G.M. Ernst, Sudarshan A. Shetty, Leo Lahti.</p>
 </div>
 
 <div class="pkgdown">

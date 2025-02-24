@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.46</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.24</span>
       </span>
     </div>
 
@@ -44,7 +44,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Estimate divergence</h1>
-    <small class="dont-index">Source: <a href="https://github.com/microbiome/mia/blob/devel/R/estimateDivergence.R" class="external-link"><code>R/estimateDivergence.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/microbiome/mia/blob/devel/R/AllGenerics.R" class="external-link"><code>R/AllGenerics.R</code></a>, <a href="https://github.com/microbiome/mia/blob/devel/R/addDivergence.R" class="external-link"><code>R/addDivergence.R</code></a></small>
     <div class="hidden name"><code>addDivergence.Rd</code></div>
     </div>
 
@@ -55,9 +55,6 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">addDivergence</span><span class="op">(</span><span class="va">x</span>, name <span class="op">=</span> <span class="st">"divergence"</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># S4 method for class 'SummarizedExperiment'</span></span>
-<span><span class="fu">addDivergence</span><span class="op">(</span><span class="va">x</span>, name <span class="op">=</span> <span class="st">"divergence"</span>, <span class="va">...</span><span class="op">)</span></span>
-<span></span>
 <span><span class="fu">getDivergence</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  assay.type <span class="op">=</span> <span class="va">assay_name</span>,</span>
@@ -66,6 +63,9 @@
 <span>  method <span class="op">=</span> <span class="st">"bray"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'SummarizedExperiment'</span></span>
+<span><span class="fu">addDivergence</span><span class="op">(</span><span class="va">x</span>, name <span class="op">=</span> <span class="st">"divergence"</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for class 'SummarizedExperiment'</span></span>
 <span><span class="fu">getDivergence</span><span class="op">(</span></span>
@@ -83,7 +83,7 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>a <code>SummarizedExperiment</code> object.</p></dd>
+<dd><p>a <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">SummarizedExperiment</a></code> object.</p></dd>
 
 
 <dt id="arg-name">name<a class="anchor" aria-label="anchor" href="#arg-name"></a></dt>
@@ -92,12 +92,17 @@ in metadata of the output. (Default: <code>method</code>)</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>optional arguments</p></dd>
+<dd><p>optional arguments passed to
+<code><a href="getDissimilarity.html">addDissimilarity</a></code>. Additionally:</p><ul><li><p><code>dimred</code>: <code>Character scalar</code>. Specifies the name of
+dimension reduction result from <code>reducedDim(x)</code>. If used, these
+values are used to calculate divergence instead of the assay. Can be
+disabled with <code>NULL</code>. (Default: <code>NULL</code>)</p></li>
+</ul></dd>
 
 
 <dt id="arg-assay-type">assay.type<a class="anchor" aria-label="anchor" href="#arg-assay-type"></a></dt>
-<dd><p><code>Character scalar</code>. Specifies which assay to use for
-calculation. (Default: <code>"counts"</code>)</p></dd>
+<dd><p><code>Character scalar</code>. Specifies the name of assay
+used in calculation. (Default: <code>"counts"</code>)</p></dd>
 
 
 <dt id="arg-assay-name">assay_name<a class="anchor" aria-label="anchor" href="#arg-assay-name"></a></dt>
@@ -106,7 +111,10 @@ calculation. (Default: <code>"counts"</code>)</p></dd>
 
 <dt id="arg-reference">reference<a class="anchor" aria-label="anchor" href="#arg-reference"></a></dt>
 <dd><p><code>Character scalar</code>. A column name from
-<code>colData(x)</code> or either <code>"mean"</code> or <code>"median"</code>.
+<code>colData(x)</code> or either <code>"mean"</code> or <code>"median"</code>. If column name
+is specified, the column must include reference samples for each sample.
+If <code>"mean"</code> or <code>"median"</code> is specified, the mean or median of the
+entire dataset is calculated and used as the reference value.
 (Default: <code>"median"</code>)</p></dd>
 
 
@@ -117,7 +125,8 @@ calculate. (Default: <code>"bray"</code>)</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>x</code> with additional <code>colData</code> named <code>*name*</code></p>
+    <p><code>x</code> with additional
+<code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></code> named <code>name</code></p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -131,9 +140,10 @@ applied to equalize sample sizes between comparisons.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/scater/man/plotColData.html" class="external-link">plotColData</a></code></p><ul><li><p><code><a href="deprecate.html">estimateRichness</a></code></p></li>
-<li><p><code><a href="deprecate.html">estimateEvenness</a></code></p></li>
-<li><p><code><a href="deprecate.html">estimateDominance</a></code></p></li>
+    <div class="dont-index">
+<ul><li><p><code><a href="addAlpha.html">addAlpha</a></code></p></li>
+<li><p><code><a href="getDissimilarity.html">addDissimilarity</a></code></p></li>
+<li><p><code><a href="https://rdrr.io/pkg/scater/man/plotColData.html" class="external-link">plotColData</a></code></p></li>
 </ul></div>
     </div>
 
@@ -143,15 +153,15 @@ applied to equalize sample sizes between comparisons.</p>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="va">GlobalPatterns</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># By default, reference is median of all samples. The name of column where</span></span></span>
-<span class="r-in"><span><span class="co"># results is "divergence" by default, but it can be specified. </span></span></span>
+<span class="r-in"><span><span class="co"># results is "divergence" by default, but it can be specified.</span></span></span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu">addDivergence</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># The method that are used to calculate distance in divergence and </span></span></span>
+<span class="r-in"><span><span class="co"># The method that are used to calculate distance in divergence and</span></span></span>
 <span class="r-in"><span><span class="co"># reference can be specified. Here, euclidean distance is used. Reference is</span></span></span>
 <span class="r-in"><span><span class="co"># the first sample. It is recommended # to add reference to colData.</span></span></span>
 <span class="r-in"><span><span class="va">tse</span><span class="op">[[</span><span class="st">"reference"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu">addDivergence</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="va">tse</span>, name <span class="op">=</span> <span class="st">"divergence_first_sample"</span>, </span></span>
+<span class="r-in"><span>    <span class="va">tse</span>, name <span class="op">=</span> <span class="st">"divergence_first_sample"</span>,</span></span>
 <span class="r-in"><span>    reference <span class="op">=</span> <span class="st">"reference"</span>,</span></span>
 <span class="r-in"><span>    method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -224,7 +234,7 @@ applied to equalize sample sizes between comparisons.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Felix G.M. Ernst, Sudarshan A. Shetty, Tuomas Borman, Leo Lahti.</p>
+  <p></p><p>Developed by Tuomas Borman, Felix G.M. Ernst, Sudarshan A. Shetty, Leo Lahti.</p>
 </div>
 
 <div class="pkgdown">

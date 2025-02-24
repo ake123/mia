@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.46</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.24</span>
       </span>
     </div>
 
@@ -44,7 +44,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Agglomerate data based on population prevalence</h1>
-    <small class="dont-index">Source: <a href="https://github.com/microbiome/mia/blob/devel/R/getPrevalence.R" class="external-link"><code>R/getPrevalence.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/microbiome/mia/blob/devel/R/AllGenerics.R" class="external-link"><code>R/AllGenerics.R</code></a>, <a href="https://github.com/microbiome/mia/blob/devel/R/getPrevalence.R" class="external-link"><code>R/getPrevalence.R</code></a></small>
     <div class="hidden name"><code>agglomerateByPrevalence.Rd</code></div>
     </div>
 
@@ -70,7 +70,7 @@
 <span>  rank <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  other.name <span class="op">=</span> <span class="va">other_label</span>,</span>
 <span>  other_label <span class="op">=</span> <span class="st">"Other"</span>,</span>
-<span>  update.tree <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  update.tree <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -90,8 +90,8 @@ See <code><a href="agglomerate-methods.html">agglomerateByRank</a></code> for mo
 
 
 <dt id="arg-rank">rank<a class="anchor" aria-label="anchor" href="#arg-rank"></a></dt>
-<dd><p><code>Character scalar</code>. Defines a taxonomic rank. Must be a value of
-<code><a href="taxonomy-methods.html">taxonomyRanks()</a></code> function.</p></dd>
+<dd><p><code>Character scalar</code>. Defines a taxonomic rank. Must be a
+value of <code><a href="taxonomy-methods.html">taxonomyRanks()</a></code> function.</p></dd>
 
 
 <dt id="arg-other-name">other.name<a class="anchor" aria-label="anchor" href="#arg-other-name"></a></dt>
@@ -105,7 +105,7 @@ summary of non-prevalent taxa. (default: <code>"Other"</code>)</p></dd>
 
 <dt id="arg-update-tree">update.tree<a class="anchor" aria-label="anchor" href="#arg-update-tree"></a></dt>
 <dd><p><code>Logical scalar</code>. Should
-<code>rowTree()</code> also be merged? (Default: <code>FALSE</code>)</p></dd>
+<code><a href="https://rdrr.io/pkg/TreeSummarizedExperiment/man/TreeSummarizedExperiment-accessor.html" class="external-link">rowTree()</a></code> also be merged? (Default: <code>TRUE</code>)</p></dd>
 
 </dl></div>
     <div id="value">
@@ -149,7 +149,7 @@ threshold) are agglomerated in an additional row taking the name indicated by
 <span class="r-out co"><span class="r-pr">#&gt;</span> mainExpName: NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> altExpNames(0):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rowLinks: a LinkDataFrame (6 rows)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rowTree: 1 phylo tree(s) (19216 leaves)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rowTree: 1 phylo tree(s) (6 leaves)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> colLinks: NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> colTree: NULL</span>
 <span class="r-in"><span></span></span>
@@ -159,7 +159,7 @@ threshold) are agglomerated in an additional row taking the name indicated by
 <span class="r-in"><span><span class="co"># named by default "Other" takes the summed up values of all the other phyla</span></span></span>
 <span class="r-in"><span><span class="co"># that are below the prevalence threshold.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">assay</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   CL3    CC1    SV1 M31Fcsw M11Fcsw</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Actinobacteria  39601  90280 121703    2540     841</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bacteroidetes   67395  96398  93436  804395 1424107</span>
@@ -178,7 +178,7 @@ threshold) are agglomerated in an additional row taking the name indicated by
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Felix G.M. Ernst, Sudarshan A. Shetty, Tuomas Borman, Leo Lahti.</p>
+  <p></p><p>Developed by Tuomas Borman, Felix G.M. Ernst, Sudarshan A. Shetty, Leo Lahti.</p>
 </div>
 
 <div class="pkgdown">

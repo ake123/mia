@@ -22,7 +22,7 @@ Import the QIIME2 artifacts to R."><!-- mathjax --><script src="https://cdnjs.cl
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.46</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.24</span>
       </span>
     </div>
 
@@ -128,8 +128,8 @@ sequences will not be set.</p></dd>
 
 
 <dt id="arg-refseq-file">refseq.file<a class="anchor" aria-label="anchor" href="#arg-refseq-file"></a></dt>
-<dd><p><code>Character scalar</code> or <code>NULL</code>. Defines the file path of
-the reference sequences for each feature. (Default: <code>NULL</code>).</p></dd>
+<dd><p><code>Character scalar</code> or <code>NULL</code>. Defines the file
+path of the reference sequences for each feature. (Default: <code>NULL</code>).</p></dd>
 
 
 <dt id="arg-refseqfile">refSeqFile<a class="anchor" aria-label="anchor" href="#arg-refseqfile"></a></dt>
@@ -163,8 +163,8 @@ right now.</p></dd>
 
 
 <dt id="arg-temp-dir">temp.dir<a class="anchor" aria-label="anchor" href="#arg-temp-dir"></a></dt>
-<dd><p>character, a temporary directory in which the qza file will be
-decompressed to, default <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>.</p></dd>
+<dd><p>character, a temporary directory in which the qza file will
+be decompressed to, default <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>.</p></dd>
 
 
 <dt id="arg-temp">temp<a class="anchor" aria-label="anchor" href="#arg-temp"></a></dt>
@@ -231,7 +231,7 @@ microbiome data science using QIIME 2. Nature Biotechnology 37: 852–857.
 <span class="r-out co"><span class="r-pr">#&gt;</span>   fe30ff0f71a38a39cf1717ec2be3a2fc ... 98d250a339a635f20e26397dafc6ced3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1830c14ead81ad012f1db0e12f8ab6a4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(8): kingdom phylum ... species Confidence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(34): L1S8 L1S57 ... L6S68 L6S93</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(34): L1S105 L1S140 ... L6S68 L6S93</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> colData names(9): sample.id barcode.sequence ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   reported.antibiotic.usage days.since.experiment.start</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> reducedDimNames(0):</span>
@@ -259,7 +259,8 @@ microbiome data science using QIIME 2. Nature Biotechnology 37: 852–857.
 <span class="r-in"><span><span class="va">coldata</span> <span class="op">&lt;-</span> <span class="va">coldata</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">assay</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">coldata</span><span class="op">)</span><span class="op">)</span>, <span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create SE from individual files</span></span></span>
-<span class="r-in"><span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">SummarizedExperiment</a></span><span class="op">(</span>assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">assay</span><span class="op">)</span>, rowData <span class="op">=</span> <span class="va">rowdata</span>, colData <span class="op">=</span> <span class="va">coldata</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">SummarizedExperiment</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">assay</span><span class="op">)</span>, rowData <span class="op">=</span> <span class="va">rowdata</span>, colData <span class="op">=</span> <span class="va">coldata</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">se</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: SummarizedExperiment </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dim: 770 34 </span>
@@ -283,7 +284,7 @@ microbiome data science using QIIME 2. Nature Biotechnology 37: 852–857.
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Felix G.M. Ernst, Sudarshan A. Shetty, Tuomas Borman, Leo Lahti.</p>
+  <p></p><p>Developed by Tuomas Borman, Felix G.M. Ernst, Sudarshan A. Shetty, Leo Lahti.</p>
 </div>
 
 <div class="pkgdown">
