@@ -19,7 +19,7 @@ object into a long data.frame which can be used for tidyverse-tools."><!-- mathj
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.35</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.3</span>
       </span>
     </div>
 
@@ -73,7 +73,10 @@ object into a long data.frame which can be used for <code>tidyverse</code>-tools
 <span>  col.name <span class="op">=</span> <span class="va">sample_name</span>,</span>
 <span>  sample_name <span class="op">=</span> <span class="st">"SampleID"</span>,</span>
 <span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'SingleCellExperiment'</span></span>
+<span><span class="fu">meltSE</span><span class="op">(</span><span class="va">x</span>, add.dimred <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -144,6 +147,15 @@ for the sample identifier. (Default: <code>"SampleID"</code>)</p></dd>
 <dt id="arg-sample-name">sample_name<a class="anchor" aria-label="anchor" href="#arg-sample-name"></a></dt>
 <dd><p>Deprecated. Use <code>col.name</code> instead.</p></dd>
 
+
+<dt id="arg-add-dimred">add.dimred<a class="anchor" aria-label="anchor" href="#arg-add-dimred"></a></dt>
+<dd><p><code>Logical scalar</code> or <code>Character vector</code>. To
+select information from the <code>reducedDim</code> to add to the molten assay
+data. If <code>add.dimred = NULL</code> no data will be added, if
+<code>add.dimred = TRUE</code> all data will be added and if
+<code>add.dimred</code> is a <code>character</code> vector, it will be used to subset
+to given names in <code>reducedDimNames(x)</code>. (Default: <code>NULL</code>)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -201,7 +213,7 @@ names are set.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
       </footer></div>

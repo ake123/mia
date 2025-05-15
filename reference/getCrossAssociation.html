@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.35</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.3</span>
       </span>
     </div>
 
@@ -478,6 +478,20 @@ faster solutions when running times are critical.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5       KY646024.1.1591    1  0.34783280</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6  JUOP01000215.81.1657    1  0.54433105</span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># In ecological studies the association analyses are sometimes carried out</span></span></span>
+<span class="r-in"><span><span class="co"># only for those samples that have observations. You can ignore zeroes by</span></span></span>
+<span class="r-in"><span><span class="co"># replacing them with NA.</span></span></span>
+<span class="r-in"><span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">tse</span>, <span class="st">"counts"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mat</span><span class="op">[</span> <span class="va">mat</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">tse</span>, <span class="st">"non_zero"</span>, withDimnames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">mat</span></span></span>
+<span class="r-in"><span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu">getCrossAssociation</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">tse</span>, <span class="va">tse</span>,</span></span>
+<span class="r-in"><span>    assay.type1 <span class="op">=</span> <span class="st">"non_zero"</span>, assay.type2 <span class="op">=</span> <span class="st">"non_zero"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Calculating correlations...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> altexp1: -, altexp2: -, assay.type1: non_zero, col.var1: -, dimred1: -, assay.type2: non_zero, col.var2: -, dimred2: -</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> by: 1, function: stats::cor, method: kendall, test.signif: FALSE, p.adj.method: -, paired: FALSE, show.warnings: TRUE</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -492,7 +506,7 @@ faster solutions when running times are critical.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
       </footer></div>
