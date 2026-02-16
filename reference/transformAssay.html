@@ -18,7 +18,7 @@ See details for options."><!-- mathjax --><script src="https://cdnjs.cloudflare.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -99,8 +99,11 @@ the magnitude of the normalized counts. (Default: <code>1000</code>).</p></li>
 specifies relative difference threshold and determines the first point
 where the relative change in  differences between consecutive quantiles
 exceeds this threshold. (Default: <code>0.1</code>) For <code>"cutoff"</code>,
-values less than or equal to the threshold are replaced with <code>NA</code>.
+values less than or equal to the threshold are replaced with <code>value</code>.
 (Default: <code>0</code>)</p></li>
+<li><p><code>value</code>: <code>Numeric scalar</code>. For  <code>"cutoff"</code>, specifies
+the replacement value for counts less than or equal to the threshold.
+(Default: <code>NA</code>)</p></li>
 <li><p><code>tree</code>: <code>phylo</code>. Phylogeny used in PhILR transformation.
 If <code>NULL</code>, the tree is retrieved from <code>x</code>.
 (Default: <code>NULL</code>).</p></li>
@@ -168,9 +171,9 @@ in a new <code>assay</code>.</p>
 (assay) based on specified <code>MARGIN</code>.</p>
 <p>The available transformation methods include:</p>
 <ul><li><p>'alr', 'chi.square', 'clr', 'frequency', 'hellinger', 'log',
-'normalize', 'pa', 'rank', 'rclr' relabundance', 'rrank', 'standardize',
+'normalize', 'pa', 'rank', 'rclr', 'relabundance', 'rrank', 'standardize',
 'total': please refer to
-<code><a href="https://rdrr.io/pkg/vegan/man/decostand.html" class="external-link">decostand</a></code> for details.</p></li>
+<code><a href="https://vegandevs.github.io/vegan/reference/decostand.html" class="external-link">decostand</a></code> for details.</p></li>
 <li><p>'philr': please refer to <code><a href="https://rdrr.io/pkg/philr/man/philr.html" class="external-link">philr</a></code> for details.</p></li>
 <li><p>'css': Cumulative Sum Scaling (CSS) can be used to normalize count data
 by accounting for differences in library sizes. By default, the function
@@ -187,10 +190,26 @@ where \(x\) is a single value of data.</p></li>
 the data.
 $$log2 = \log_{2} x$$
 where \(x\) is a single value of data.</p></li>
+<li><p>'difference': Pairwise differences between features.
+Calculates \(x - y\) for all unique feature pairs across samples,
+where \(x\) and \(y\) are entries of the specified assay.type.</p></li>
+<li><p>'division': Pairwise ratios between features.
+Calculates \(x / y\) for all unique feature pairs across samples,
+where \(x\) and \(y\) are entries of the specified assay.type.</p></li>
+<li><p>'invnorm': Inverse rank normalisation. Ranks values per
+sample/feature and maps them to standard normal quantiles.
+$$
+z = \Phi^{-1}\!\left(
+  \frac{r - \mathrm{offset}}{\,n + 1 - 2\,\mathrm{offset}\,}
+\right)
+$$
+Controlled by <code>offset</code> (default <code>0.5</code>; also
+<code>0.375</code>=Blom, <code>0</code>=van der Waerden) and <code>ties.method</code>
+(passed to <code><a href="https://rdrr.io/r/base/rank.html" class="external-link">base::rank</a></code>, default <code>"average"</code>).</p></li>
 <li><p>'pseudocount': Adds only pseudocount.</p></li>
 <li><p>'cutoff': In some ecological studies, only strictly positive values
 are taken into account. This method keeps only values greater than
-<code>threshold</code> and replaces all other values with <code>NA</code>.</p></li>
+<code>threshold</code> and replaces all other values with <code>value</code>.</p></li>
 </ul></div>
     <div id="references">
     <h2>References</h2>
@@ -202,7 +221,7 @@ doi:10.1038/nmeth.2658</p>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index">
-<ul><li><p><code><a href="https://rdrr.io/pkg/vegan/man/decostand.html" class="external-link">vegan::decostand</a></code></p></li>
+<ul><li><p><code><a href="https://vegandevs.github.io/vegan/reference/decostand.html" class="external-link">vegan::decostand</a></code></p></li>
 <li><p><code><a href="https://rdrr.io/pkg/philr/man/philr.html" class="external-link">philr::philr</a></code></p></li>
 </ul></div>
     </div>
@@ -414,6 +433,8 @@ doi:10.1038/nmeth.2658</p>
 <span class="r-in"><span><span class="co"># transformation.</span></span></span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="va">GlobalPatterns</span></span></span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu"><a href="agglomerate-methods.html">agglomerateByRanks</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Duplicated labels were made unique.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Duplicated labels were made unique.</span>
 <span class="r-in"><span><span class="va">tse</span> <span class="op">&lt;-</span> <span class="fu">transformAssay</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="va">tse</span>, method <span class="op">=</span> <span class="st">"relabundance"</span>, altexp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/altExps.html" class="external-link">altExpNames</a></span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># The transformation is applied to all alternative experiments</span></span></span>
@@ -459,7 +480,7 @@ doi:10.1038/nmeth.2658</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>

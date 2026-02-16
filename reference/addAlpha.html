@@ -18,7 +18,7 @@ rarefaction."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/lib
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -186,12 +186,12 @@ and prune the tree to match features so that each tip can be found from
 the features. Other option is to remove all features that are not tips.
 (See <code>only.tips</code> parameter)</p></li>
 <li><p>'fisher': Fisher's alpha; as implemented in
-<code><a href="https://rdrr.io/pkg/vegan/man/diversity.html" class="external-link">vegan::fisher.alpha</a></code>. (Fisher et al. 1943)</p></li>
+<code><a href="https://vegandevs.github.io/vegan/reference/diversity.html" class="external-link">vegan::fisher.alpha</a></code>. (Fisher et al. 1943)</p></li>
 <li><p>'gini_simpson': Gini-Simpson diversity i.e. \(1 - lambda\),
 where \(lambda\) is the
 Simpson index, calculated as the sum of squared relative abundances.
 This corresponds to the diversity index
-'simpson' in <code><a href="https://rdrr.io/pkg/vegan/man/diversity.html" class="external-link">vegan::diversity</a></code>.
+'simpson' in <code><a href="https://vegandevs.github.io/vegan/reference/diversity.html" class="external-link">vegan::diversity</a></code>.
 This is also called Gibbs–Martin, or Blau index in sociology,
 psychology and management studies. The Gini-Simpson index (1-lambda)
 should not be
@@ -292,7 +292,10 @@ correlated with the simpler variant implemented here.</p></li>
 <p>Evenness is a standard index in community ecology, and it quantifies how
 evenly the abundances of different species are distributed. The following
 evenness indices are provided:</p>
-<p>By default, this function returns all indices.</p>
+<p>By default, four indices are returned, each taking into account different
+aspects: richness (the number of observed unique features),
+dominance (Berger-Parker), information (Shannon), and phylogenetics (Faith)
+(Cassol et al., 2025).</p>
 <p>The available evenness indices include the following (all in lowercase):</p><ul><li><p>'camargo': Camargo's evenness (Camargo 1992)</p></li>
 <li><p>'simpson_evenness': Simpson’s evenness is calculated as inverse
 Simpson diversity (1/lambda) divided by
@@ -341,18 +344,18 @@ based on the assumption that the abundant species are observed regardless
 of their
 exact abundance. We use here the bias-corrected version
 (O'Hara 2005, Chiu et al. 2014) implemented in
-<code><a href="https://rdrr.io/pkg/vegan/man/specpool.html" class="external-link">estimateR</a></code>.
-For an exact formulation, see <code><a href="https://rdrr.io/pkg/vegan/man/specpool.html" class="external-link">estimateR</a></code>.
+<code><a href="https://vegandevs.github.io/vegan/reference/specpool.html" class="external-link">estimateR</a></code>.
+For an exact formulation, see <code><a href="https://vegandevs.github.io/vegan/reference/specpool.html" class="external-link">estimateR</a></code>.
 Note that this index comes with an additional column with standard
 error information.</p></li>
 <li><p>'chao1': This is a nonparametric estimator of species richness. It
 assumes that rare species carry information about the (unknown) number
 of unobserved species. We use here the bias-corrected version
 (O'Hara 2005, Chiu et al. 2014) implemented in
-<code><a href="https://rdrr.io/pkg/vegan/man/specpool.html" class="external-link">estimateR</a></code>. This index implicitly
+<code><a href="https://vegandevs.github.io/vegan/reference/specpool.html" class="external-link">estimateR</a></code>. This index implicitly
 assumes that every taxa has equal probability of being observed. Note
 that it gives a lower bound to species richness. The bias-corrected
-for an exact formulation, see <code><a href="https://rdrr.io/pkg/vegan/man/specpool.html" class="external-link">estimateR</a></code>.
+for an exact formulation, see <code><a href="https://vegandevs.github.io/vegan/reference/specpool.html" class="external-link">estimateR</a></code>.
 This estimator uses only the singleton and doubleton counts, and
 hence it gives more weight to the low abundance species.
 Note that this index comes with an additional column with standard
@@ -462,13 +465,16 @@ A Consumer's Guide to Evenness Indices.
 A tribute to Claude Shannon (1916 –2001) and a plea for more rigorous use of
 species richness, species diversity and the ‘Shannon–Wiener’ Index.
 <em>Alpha Ecology &amp; Biogeography</em> 12, 177–197.</p>
+<p>Cassol, I., Ibañez, M. &amp; Bustamante, J.P. (2025)
+Key features and guidelines for the application of microbial alpha diversity
+metrics. <em>Sci Rep</em> 15, 622. doi:10.1038/s41598-024-77864-y</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index">
 <ul><li><p><code><a href="https://rdrr.io/pkg/scater/man/plotColData.html" class="external-link">plotColData</a></code></p></li>
-<li><p><code><a href="https://rdrr.io/pkg/vegan/man/specpool.html" class="external-link">estimateR</a></code></p></li>
-<li><p><code><a href="https://rdrr.io/pkg/vegan/man/diversity.html" class="external-link">diversity</a></code></p></li>
+<li><p><code><a href="https://vegandevs.github.io/vegan/reference/specpool.html" class="external-link">estimateR</a></code></p></li>
+<li><p><code><a href="https://vegandevs.github.io/vegan/reference/diversity.html" class="external-link">diversity</a></code></p></li>
 </ul></div>
     </div>
 
@@ -497,8 +503,8 @@ species richness, species diversity and the ‘Shannon–Wiener’ Index.
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Shows the estimated observed richness</span></span></span>
 <span class="r-in"><span><span class="va">tse</span><span class="op">$</span><span class="va">observed_richness</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 3566 3829 2807  738  605 1315 2286 1791  527 1581  760  922 2236 2049 2246</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  985 1201  874 2995 2101 2458  865  719  888  721  642</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 3554 3839 2838  762  613 1334 2284 1786  549 1600  760  883 2271 2080 2238</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  987 1194  894 2995 2106 2435  829  701  881  714  661</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># One can also calculate the indices and get the results without adding</span></span></span>
 <span class="r-in"><span><span class="co"># them to colData</span></span></span>
@@ -528,7 +534,7 @@ species richness, species diversity and the ‘Shannon–Wiener’ Index.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>

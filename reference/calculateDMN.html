@@ -19,7 +19,7 @@ package"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mat
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -260,7 +260,7 @@ returns a single <code>DMN</code> object.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: DMN </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> k: 3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> samples x taxa: 278 x 130 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Laplace: 38854.23 BIC: 40001.15 AIC: 39290.14 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Laplace: 38854.25 BIC: 40001.15 AIC: 39290.14 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get and display which objects fits best</span></span></span>
@@ -274,21 +274,21 @@ returns a single <code>DMN</code> object.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: DMN </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> k: 3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> samples x taxa: 278 x 130 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Laplace: 38854.23 BIC: 40001.15 AIC: 39290.14 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Laplace: 38854.25 BIC: 40001.15 AIC: 39290.14 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the sample-cluster assignment probability matrix</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">metadata</span><span class="op">(</span><span class="va">tse</span><span class="op">)</span><span class="op">$</span><span class="va">DMM</span><span class="op">$</span><span class="va">prob</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    1            2            3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS1.2   9.999997e-01 2.998308e-07 4.862227e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS10.2  9.516094e-01 8.371667e-09 4.839063e-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS100.2 4.435070e-08 8.560741e-02 9.143925e-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS100   9.919541e-01 8.045492e-03 4.123152e-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS101.2 1.352898e-12 4.161851e-07 9.999996e-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TS103.2 9.999977e-01 7.467208e-10 2.312994e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TS1.2   9.999997e-01 2.999029e-07 4.862617e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TS10.2  9.516064e-01 8.380292e-09 4.839364e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TS100.2 4.435290e-08 8.565718e-02 9.143428e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TS100   9.919495e-01 8.050077e-03 4.122431e-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TS101.2 1.352312e-12 4.163564e-07 9.999996e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TS103.2 9.999977e-01 7.470625e-10 2.313109e-06</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the weight of each component for the best model</span></span></span>
 <span class="r-in"><span><span class="va">bestModel</span><span class="op">@</span><span class="va">mixture</span><span class="op">$</span><span class="va">Weight</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5655867 0.2227178 0.2116955</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5655827 0.2227233 0.2116940</span>
 </code></pre></div>
     </div>
   </div>
@@ -303,7 +303,7 @@ returns a single <code>DMN</code> object.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>

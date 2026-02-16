@@ -20,7 +20,7 @@ TreeSummarizedExperiment."><!-- mathjax --><script src="https://cdnjs.cloudflare
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@ returned directly or added to metadata in an object of class
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>additional arguments passed to <code><a href="https://rdrr.io/pkg/vegan/man/adonis.html" class="external-link">vegan::adonis2</a></code>.</p><ul><li><p><code>by</code>: <code>Character scalar</code>. Specifies how significance is
+<dd><p>additional arguments passed to <code><a href="https://vegandevs.github.io/vegan/reference/adonis.html" class="external-link">vegan::adonis2</a></code>.</p><ul><li><p><code>by</code>: <code>Character scalar</code>. Specifies how significance is
 calculated. (Default: <code>"margin"</code>)</p></li>
 <li><p><code>na.action</code>: <code>function</code>. Action to take when missing
 values for any of the variables in <code>formula</code> are encountered.
@@ -95,9 +95,9 @@ homogeneity calculations be returned. When <code>FALSE</code>, only
 summary tables are returned. (Default: <code>FALSE</code>)</p></li>
 <li><p><code>homogeneity.test</code>: <code>Character scalar</code>. Specifies
 the significance test used to analyse
-<code><a href="https://rdrr.io/pkg/vegan/man/betadisper.html" class="external-link">vegan::betadisper</a></code> results.
+<code><a href="https://vegandevs.github.io/vegan/reference/betadisper.html" class="external-link">vegan::betadisper</a></code> results.
 Options include 'permanova'
-(<code><a href="https://rdrr.io/pkg/vegan/man/anova.cca.html" class="external-link">vegan::permutest</a></code>), 'anova'
+(<code><a href="https://vegandevs.github.io/vegan/reference/anova.cca.html" class="external-link">vegan::permutest</a></code>), 'anova'
 (<code><a href="https://rdrr.io/r/stats/anova.html" class="external-link">stats::anova</a></code>) and 'tukeyhsd'
 (<code><a href="https://rdrr.io/r/stats/TukeyHSD.html" class="external-link">stats::TukeyHSD</a></code>).
 (Default: <code>"permanova"</code>)</p></li>
@@ -161,10 +161,10 @@ should be distinct and have similar variances within each group. This
 assumption is essential as PERMANOVA is sensitive to differences in
 within-group dispersion, which can otherwise confound results.
 This is why the functions return homogeneity test results by default.</p>
-<p>The functions utilize <code><a href="https://rdrr.io/pkg/vegan/man/adonis.html" class="external-link">vegan::adonis2</a></code> to compute
+<p>The functions utilize <code><a href="https://vegandevs.github.io/vegan/reference/adonis.html" class="external-link">vegan::adonis2</a></code> to compute
 PERMANOVA. For homogeneity testing,
-<code><a href="https://rdrr.io/pkg/vegan/man/betadisper.html" class="external-link">vegan::betadisper</a></code> along
-with <code><a href="https://rdrr.io/pkg/vegan/man/anova.cca.html" class="external-link">vegan::permutest</a></code> are utilized by default,
+<code><a href="https://vegandevs.github.io/vegan/reference/betadisper.html" class="external-link">vegan::betadisper</a></code> along
+with <code><a href="https://vegandevs.github.io/vegan/reference/anova.cca.html" class="external-link">vegan::permutest</a></code> are utilized by default,
 which allow testing for equal dispersion across groups and validate the
 homogeneity assumption.</p>
 <p>PERMANOVA and distance-based redundancy analysis (dbRDA) are closely related
@@ -181,9 +181,9 @@ reliance on linear assumptions.</p>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>For more details on the actual implementation see
-<code><a href="https://rdrr.io/pkg/vegan/man/adonis.html" class="external-link">vegan::adonis2</a></code>,
-<code><a href="https://rdrr.io/pkg/vegan/man/betadisper.html" class="external-link">vegan::betadisper</a></code>, and
-<code><a href="https://rdrr.io/pkg/vegan/man/anova.cca.html" class="external-link">vegan::permutest</a></code>. See also
+<code><a href="https://vegandevs.github.io/vegan/reference/adonis.html" class="external-link">vegan::adonis2</a></code>,
+<code><a href="https://vegandevs.github.io/vegan/reference/betadisper.html" class="external-link">vegan::betadisper</a></code>, and
+<code><a href="https://vegandevs.github.io/vegan/reference/anova.cca.html" class="external-link">vegan::permutest</a></code>. See also
 <code><a href="runCCA.html">addCCA</a></code> and <code><a href="runCCA.html">addRDA</a></code></p></div>
     </div>
 
@@ -221,7 +221,7 @@ reliance on linear assumptions.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $homogeneity</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Df    Sum Sq    Mean Sq        F N.Perm Pr(&gt;F) Total variance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SampleType  8 0.4996524 0.06245655 5.807135     99   0.01      0.6824898</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SampleType  8 0.4996524 0.06245655 5.807135     99   0.02      0.6824898</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Explained variance</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SampleType          0.7321024</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -259,7 +259,7 @@ reliance on linear assumptions.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>
